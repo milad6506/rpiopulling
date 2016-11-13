@@ -11,18 +11,16 @@ using namespace std;
 class serialPort : public QObject
 {
     Q_OBJECT
-    QSerialPort* IMU;
+    //QSerialPort* IMU;
     QByteArray imuData;
 
 public:
     explicit serialPort(QObject *parent = 0);
-    ~serialPort();
 
 signals:
 
 public slots:
-    bool openPort();
-    void closePort();
+
     void interpretData(QString inputData);
     void startPolling();
 };
