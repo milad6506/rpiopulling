@@ -23,7 +23,7 @@ void serialPort::interpretData(QString inputData)
 void serialPort::startPolling()
 {
     QSerialPort IMU;
-    IMU.setPortName("/dev/ttyAMA0");
+    IMU.setPortName("ttyAMA0");
     IMU.setBaudRate(QSerialPort::Baud57600);
     IMU.setDataBits(QSerialPort::Data8);
     IMU.setFlowControl(QSerialPort::NoFlowControl);
