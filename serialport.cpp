@@ -2,33 +2,13 @@
 
 serialPort::serialPort(QObject *parent) : QObject(parent)
 {
-    IMU = new QSerialPort;
-    IMU->setPortName("ttyAMA0");
-    IMU->setBaudRate(QSerialPort::Baud57600);
-    IMU->setDataBits(QSerialPort::Data8);
-    IMU->setFlowControl(QSerialPort::NoFlowControl);
-    IMU->setParity(QSerialPort::NoParity);
-    IMU->setStopBits(QSerialPort::OneStop);
+
 
 
 
 }
 
-serialPort::~serialPort()
-{
-    delete IMU;
 
-}
-
-bool serialPort::openPort()
-{
-    return IMU->open(QIODevice::ReadWrite);
-}
-
-void serialPort::closePort()
-{
-    IMU->close();
-}
 
 void serialPort::interpretData(QString inputData)
 {
@@ -38,9 +18,16 @@ void serialPort::interpretData(QString inputData)
 
 void serialPort::startPolling()
 {
-    while (openPort()){
-        while (IMU->canReadLine()){
-            imuData = IMU->readLine();
+    QSerialPort IMU;
+    IMU.setPortName("ttyAMA0");
+    IMU.setBaudRate(QSerialPort::Baud57600);
+    IMU.setDataBits(QSerialPort::Data8);
+    IMU.setFlowControl(QSerialPort::NoFlowControl);
+    IMU.setParity(QSerialPort::NoParity);
+    IMU.setStopBits(QSerialPort::OneStop);
+    while (IMU.open(QIODevice::ReadWrite)){
+        while (IMU.canReadLine()){
+            imuData = IMU.readLine();
             if (imuData.contains("\r\n")){
 
                 interpretData(QString::fromStdString(imuData.toStdString()));
