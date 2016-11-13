@@ -32,10 +32,12 @@ void serialPort::startPolling()
     while (true){
         while (IMU.canReadLine()){
             imuData = IMU.readLine();
+            cout << imuData.toStdString() << "data" << endl;
+            /*
             if (imuData.contains("\r\n")){
 
                 interpretData(QString::fromStdString(imuData.toStdString()));
-            }
+            }*/
         }
     }
     cout << IMU.errorString().toStdString() << endl;
