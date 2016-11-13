@@ -29,7 +29,7 @@ void serialPort::startPolling()
     IMU.setFlowControl(QSerialPort::NoFlowControl);
     IMU.setParity(QSerialPort::NoParity);
     IMU.setStopBits(QSerialPort::OneStop);
-    while (IMU.open(QIODevice::ReadWrite)){
+    while (true){
         while (IMU.canReadLine()){
             imuData = IMU.readLine();
             if (imuData.contains("\r\n")){
