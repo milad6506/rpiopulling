@@ -38,6 +38,7 @@ void serialPort::startPolling()
             }
         }
     }
+    cout << IMU.errorString().toStdString() << endl;
     cout << "port is closed" << endl;
 
 
