@@ -30,8 +30,8 @@ void serialPort::startPolling()
     IMU.setParity(QSerialPort::NoParity);
     IMU.setStopBits(QSerialPort::OneStop);
     while (true){
-        while (IMU.canReadLine()){
-            imuData = IMU.readLine();
+        while (IMU.bytesAvailable()>0){
+            imuData = IMU.readAll();
             cout << imuData.toStdString() << "data" << endl;
             /*
             if (imuData.contains("\r\n")){
