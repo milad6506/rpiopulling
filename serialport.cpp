@@ -3,7 +3,11 @@
 serialPort::serialPort(QObject *parent) : QObject(parent)
 {
 
+    QList <QSerialPortInfo> avail = QSerialPortInfo::availablePorts();
 
+    for (int i=0;i <avail.size();i++){
+        cout << avail.at(i).portName().toStdString() << endl;
+    }
 
 
 }
@@ -19,7 +23,7 @@ void serialPort::interpretData(QString inputData)
 void serialPort::startPolling()
 {
     QSerialPort IMU;
-    IMU.setPortName("ttyAMA0");
+    IMU.setPortName("/dev/ttyAMA0");
     IMU.setBaudRate(QSerialPort::Baud57600);
     IMU.setDataBits(QSerialPort::Data8);
     IMU.setFlowControl(QSerialPort::NoFlowControl);
