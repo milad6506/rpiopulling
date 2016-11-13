@@ -38,17 +38,16 @@ void serialPort::interpretData(QString inputData)
 
 void serialPort::startPolling()
 {
-    if (openPort()){
-    while (IMU->canReadLine()){
-        imuData = IMU->readLine();
-        if (imuData.contains("\r\n")){
+    while (openPort()){
+        while (IMU->canReadLine()){
+            imuData = IMU->readLine();
+            if (imuData.contains("\r\n")){
 
-            interpretData(QString::fromStdString(imuData.toStdString()));
+                interpretData(QString::fromStdString(imuData.toStdString()));
+            }
         }
     }
-    }else{
-        cout << "port is closed" << endl;
-    }
+    cout << "port is closed" << endl;
 
 
 
