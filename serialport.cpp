@@ -5,7 +5,7 @@ serialPort::serialPort(QObject *parent) : QObject(parent)
 
     QList <QSerialPortInfo> avail = QSerialPortInfo::availablePorts();
 
-    for (int i=0;i <avail.size();i++){
+    for (int i=0;i <avail.count();i++){
         cout << avail.at(i).portName().toStdString() << endl;
     }
 

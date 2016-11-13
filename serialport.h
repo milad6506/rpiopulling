@@ -5,6 +5,9 @@
 #include <QtSerialPort/QSerialPort>
 #include <qserialport.h>
 #include <iostream>
+#include <QList>
+#include <QSerialPortInfo>
+
 
 using namespace std;
 
